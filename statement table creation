@@ -1,0 +1,80 @@
+create table account_details
+(
+ account_number number NOT NULL UNIQUE,
+ account_type varchar2(5),
+ account_branch varchar2(10),
+ curr_account_balance number,
+ rate_of_interest varchar2(5),
+ customer_id number,
+ foreign key (customer_id) references customer_details(customer_id)
+);
+..........................................................................
+
+create table customer_details
+(
+ customer_id number PRIMARY KEY,
+ customer_name varchar2(20),
+ customer_address varchar2(50),
+ customer_mobile_no varchar2(10),
+ customer_email_id varchar2(20),
+ customer_login_id varchar2(10) UNIQUE,
+ customer_password varchar2(10) 
+);
+...........................................................................
+
+create table transaction_details
+(
+ transaction_id number PRIMARY KEY,
+ transaction_date date not null,
+ transaction_type varchar2(10),
+ transaction_amount number,
+ account_balance number,
+ transaction_narration varchar2(30),
+ account_number number NOT NULL,
+ foreign key (account_number) references account_details(account_number)
+);
+..............................................................................
+ insert into customer_details values
+(50001,'Janani','Sector 11, belapur',1234567890,'janani@gmail.com','Janani01','J0123');
+insert into customer_details values
+(50002,'Archana','Sector 15,Nerul',1234567891,'archana@gmail.com','Archana02','A0123');
+insert into customer_details values
+(50003,'Vivek','Sector 50, Seawoods',1234567892,'vivek@gmail.com','Vivek03',
+'V0123');
+insert into customer_details values(50004,'Priya','Sector 7,Khargar',1234567893,'priya@gmail.com','Priya04','P0123');
+.......................................................................
+
+insert into account_details values(100001,'SB','Belapur',115000,'4',50001);
+insert into account_details values(100002,'FD','Nerul',87000,'4',50002);
+insert into account_details values(100003,'PPF','Seawoods',63000,'4',50003);
+insert into account_details values(100004,'SB','Khargar',5000000,'4',50004);
+insert into account_details values(100005,'SB','Khargar',305000,'4',50005);
+..............................................................................
+insert into transaction_details values(101,'12-APR-2022','dr',12000,40000,'TRF/101/UPI',100001);
+insert into transaction_details values(102,'18-MAY-2022','cr',5000,68000,'TRF/102/NEFT',100003);
+insert into transaction_details values(103,'11-DEC-2021','cr',100000,5000,'TRF/103/IMPS',100002);
+insert into transaction_details values(104,'25-JAN-2022','cr',25000,30000000,'TRF/104/CLG01',100004);
+insert into transaction_details values(105,'28-FEB-2022','dr',16000,400000,'TRF/105/UPI',100005);
+insert into transaction_details values(106,'03-MAR-2022','dr',15000,25000,'TRF/106/RTGS',100001);
+insert into transaction_details values(107,'02-FEB-2022','cr',100000,125000,'TRF/107/UPI',100001);
+insert into transaction_details values(108,'06-MAY-2022','cr',20000,145000,'TRF/108/UPI',100001);
+insert into transaction_details values(109,'12-JAN-2022','dr',30000,115000,'TRF/109/UPI',100001);
+insert into transaction_details values(110,'24-FEB-2022','cr',50000,55000,'TRF/110/IMPS',100002);
+insert into transaction_details values(111,'31-MAR-2022','cr',59000,114000,'TRF/111/IMPS',100002);
+insert into transaction_details values(112,'04-APR-2022','cr',1000,115000,'TRF/112/IMPS',100002);
+insert into transaction_details values(113,'07-MAY-2022','dr',28000,87000,'TRF/113/IMPS',100002);
+insert into transaction_details values(114,'18-MAR-2022','dr',100000,300000,'TRF/114/UPI',100005);
+insert into transaction_details values(115,'16-APR-2022','cr',17000,317000,'TRF/115/UPI',100005);
+insert into transaction_details values(116,'27-MAY-2022','cr',150000,467000,'TRF/116/UPI',100005);
+insert into transaction_details values(117,'01-JAN-2022','dr',77000,390000,'TRF/117/UPI',100005);
+insert into transaction_details values(118,'28-FEB-2022','dr',85000,305000,'TRF/118/UPI',100005);
+insert into transaction_details values(119,'03-APR-2022','cr',10000,78000,'TRF/119/NEFT',100003);
+insert into transaction_details values(120,'06-MAR-2022','cr',25000,103000,'TRF/120/NEFT',100003);
+insert into transaction_details values(130,'16-FEB-2022','dr',30000,73000,'TRF/121/NEFT',100003);
+insert into transaction_details values(140,'12-JAN-2022','dr',15000,58000,'TRF/122/NEFT',100003);
+insert into transaction_details values(150,'11-NOV-2021','cr',5000,63000,'TRF/123/NEFT',100003);
+insert into transaction_details values(151,'26-FEB-2022','dr',10000000,20000000,'TRF/151/CLG01',100004);
+insert into transaction_details values(152,'31-MAR-2022','dr',5000000,15000000,'TRF/152/CLG01',100004);
+insert into transaction_details values(153,'01-APR-2022','cr',1000000,15100000,'TRF/153/CLG01',100004);
+insert into transaction_details values(154,'07-APR-2022','dr',10000000,5100000,'TRF/154/CLG01',100004);
+insert into transaction_details values(155,'21-JAN-2022','dr',100000,5000000,'TRF/155/CLG01',100004);
